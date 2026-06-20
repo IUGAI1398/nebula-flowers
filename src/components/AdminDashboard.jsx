@@ -131,8 +131,8 @@ const AdminDashboard = ({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.nameRU.trim() || !formData.nameEN.trim() || !formData.nameTH.trim()) {
-      alert('Please fill product name in all three languages (RU, EN, TH).');
+    if (!formData.nameEN.trim()) {
+      alert('Please enter a product name.');
       return;
     }
     if (!formData.price || isNaN(formData.price)) {
@@ -153,17 +153,17 @@ const AdminDashboard = ({
     const formattedProduct = {
       id: formData.id,
       names: {
-        RU: formData.nameRU.trim(),
+        RU: formData.nameEN.trim(),
         EN: formData.nameEN.trim(),
-        TH: formData.nameTH.trim()
+        TH: formData.nameEN.trim()
       },
       price: formatPrice(formData.price),
       category: formData.category,
       image: finalImage,
       tags: {
-        RU: formData.tagRU.trim(),
-        EN: formData.tagEN.trim(),
-        TH: formData.tagTH.trim()
+        RU: '',
+        EN: '',
+        TH: ''
       }
     };
 
@@ -374,42 +374,17 @@ const AdminDashboard = ({
                 {/* Left Column: Details */}
                 <div className="modal-form-left">
                   
-                  {/* Localized Names */}
-                  <div className="form-group-panel">
-                    <label className="panel-header">Product Titles (All Languages Required)</label>
-                    <div className="form-group">
-                      <label>English Name</label>
-                      <input
-                        type="text"
-                        value={formData.nameEN}
-                        onChange={(e) => setFormData(prev => ({ ...prev, nameEN: e.target.value }))}
-                        placeholder="e.g. Starry Pink Hydrangea"
-                        disabled={isFormSubmitting}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Russian Name</label>
-                      <input
-                        type="text"
-                        value={formData.nameRU}
-                        onChange={(e) => setFormData(prev => ({ ...prev, nameRU: e.target.value }))}
-                        placeholder="e.g. Звездная Розовая Гортензия"
-                        disabled={isFormSubmitting}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label>Thai Name</label>
-                      <input
-                        type="text"
-                        value={formData.nameTH}
-                        onChange={(e) => setFormData(prev => ({ ...prev, nameTH: e.target.value }))}
-                        placeholder="e.g. ไฮเดรนเยียสีชมพูแห่งดวงดาว"
-                        disabled={isFormSubmitting}
-                        required
-                      />
-                    </div>
+                  {/* Product Name */}
+                  <div className="form-group">
+                    <label>Product Name (English)</label>
+                    <input
+                      type="text"
+                      value={formData.nameEN}
+                      onChange={(e) => setFormData(prev => ({ ...prev, nameEN: e.target.value }))}
+                      placeholder="e.g. Starry Pink Hydrangea"
+                      disabled={isFormSubmitting}
+                      required
+                    />
                   </div>
 
                   {/* Price & Category */}
@@ -440,42 +415,6 @@ const AdminDashboard = ({
                     </div>
                   </div>
 
-                  {/* Localized Tags */}
-                  <div className="form-group-panel">
-                    <label className="panel-header">Promo Tags (Optional badges e.g. Bestseller)</label>
-                    <div className="form-row-3">
-                      <div className="form-group">
-                        <label>Tag (EN)</label>
-                        <input
-                          type="text"
-                          value={formData.tagEN}
-                          onChange={(e) => setFormData(prev => ({ ...prev, tagEN: e.target.value }))}
-                          placeholder="Bestseller"
-                          disabled={isFormSubmitting}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label>Tag (RU)</label>
-                        <input
-                          type="text"
-                          value={formData.tagRU}
-                          onChange={(e) => setFormData(prev => ({ ...prev, tagRU: e.target.value }))}
-                          placeholder="Бестселлер"
-                          disabled={isFormSubmitting}
-                        />
-                      </div>
-                      <div className="form-group">
-                        <label>Tag (TH)</label>
-                        <input
-                          type="text"
-                          value={formData.tagTH}
-                          onChange={(e) => setFormData(prev => ({ ...prev, tagTH: e.target.value }))}
-                          placeholder="ขายดี"
-                          disabled={isFormSubmitting}
-                        />
-                      </div>
-                    </div>
-                  </div>
 
                 </div>
 
