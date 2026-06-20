@@ -37,10 +37,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   // Routing State
-  const [currentPath, setCurrentPath] = useState(window.location.hash || '#/');
+  const [currentPath, setCurrentPath] = useState(window.location.pathname || '/');
   const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(
     sessionStorage.getItem('nebula_admin_session') === 'true'
   );
+
+  const navigate = (path) => {
+    window.history.pushState({}, '', path);
+    setCurrentPath(path);
+  };
 
   // Load products from Supabase on mount
   useEffect(() => {
@@ -65,17 +70,17 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      setCurrentPath(window.location.hash || '#/');
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname || '/');
       setIsAdminLoggedIn(sessionStorage.getItem('nebula_admin_session') === 'true');
     };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   useEffect(() => {
-    if (currentPath === '#/admin/login' && isAdminLoggedIn) {
-      window.location.hash = '#/admin';
+    if (currentPath === '/admin/login' && isAdminLoggedIn) {
+      navigate('/admin');
     }
   }, [currentPath, isAdminLoggedIn]);
 
@@ -143,25 +148,25 @@ function App() {
 
   const handleLoginSuccess = () => {
     setIsAdminLoggedIn(true);
-    window.location.hash = '#/admin';
+    navigate('/admin');
     handleShowToast('Welcome back, Commander!');
   };
 
   const handleLogout = () => {
     sessionStorage.removeItem('nebula_admin_session');
     setIsAdminLoggedIn(false);
-    window.location.hash = '#/admin/login';
+    navigate('/admin/login');
     handleShowToast('Logged out of command center.');
   };
 
   const handleBackToSite = () => {
-    window.location.hash = '#/';
+    navigate('/');
   };
 
   const t = translations[lang];
 
   // Routing Logic
-  if (currentPath === '#/admin' || currentPath.startsWith('#/admin?')) {
+  if (currentPath === '/admin' || currentPath.startsWith('/admin?')) {
     if (!isAdminLoggedIn) {
       return (
         <AdminLogin 
@@ -188,7 +193,7 @@ function App() {
     );
   }
 
-  if (currentPath === '#/admin/login') {
+  if (currentPath === '/admin/login') {
     if (isAdminLoggedIn) {
       return null;
     }
