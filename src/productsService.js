@@ -1,15 +1,5 @@
 import { supabase } from './supabaseClient';
 
-import img3870 from './assets/catalog/IMG_3870.png';
-import img3908 from './assets/catalog/IMG_3908.png';
-import img3912 from './assets/catalog/IMG_3912.png';
-import img3913 from './assets/catalog/IMG_3913.png';
-import img3914 from './assets/catalog/IMG_3914.png';
-import img3915 from './assets/catalog/IMG_3915.png';
-import img3948 from './assets/catalog/IMG_3948.jpg';
-import img4024 from './assets/catalog/IMG_4024.png';
-import img4085 from './assets/catalog/IMG_4085.png';
-
 export const defaultProducts = [
   {
     id: 'prod3870',
@@ -20,7 +10,7 @@ export const defaultProducts = [
     },
     category: 'flowers',
     price: '2 500 ฿',
-    image: img3870,
+    image: 'https://res.cloudinary.com/dui84jwxv/image/upload/f_auto,q_auto/v1781973657/prod3870.jpg',
     tags: {
       RU: 'Популярно',
       EN: 'Popular',
@@ -36,7 +26,7 @@ export const defaultProducts = [
     },
     category: 'strawberry',
     price: '1 800 ฿',
-    image: img3908,
+    image: 'https://res.cloudinary.com/dui84jwxv/image/upload/f_auto,q_auto/v1781973658/prod3908.jpg',
     tags: {
       RU: 'Бестселлер',
       EN: 'Bestseller',
@@ -52,7 +42,7 @@ export const defaultProducts = [
     },
     category: 'flowers',
     price: '2 900 ฿',
-    image: img3912,
+    image: 'https://res.cloudinary.com/dui84jwxv/image/upload/f_auto,q_auto/v1781973661/prod3912.jpg',
     tags: {
       RU: 'New',
       EN: 'New',
@@ -68,7 +58,7 @@ export const defaultProducts = [
     },
     category: 'flowers',
     price: '3 200 ฿',
-    image: img3913,
+    image: 'https://res.cloudinary.com/dui84jwxv/image/upload/f_auto,q_auto/v1781973663/prod3913.jpg',
     tags: {
       RU: 'Deluxe',
       EN: 'Deluxe',
@@ -84,7 +74,7 @@ export const defaultProducts = [
     },
     category: 'flowers',
     price: '2 400 ฿',
-    image: img3914,
+    image: 'https://res.cloudinary.com/dui84jwxv/image/upload/f_auto,q_auto/v1781973664/prod3914.jpg',
     tags: {
       RU: 'Популярно',
       EN: 'Popular',
@@ -100,7 +90,7 @@ export const defaultProducts = [
     },
     category: 'strawberry',
     price: '1 600 ฿',
-    image: img3915,
+    image: 'https://res.cloudinary.com/dui84jwxv/image/upload/f_auto,q_auto/v1781973665/prod3915.jpg',
     tags: {
       RU: 'Galaxy Box',
       EN: 'Galaxy Box',
@@ -116,7 +106,7 @@ export const defaultProducts = [
     },
     category: 'strawberry',
     price: '2 100 ฿',
-    image: img3948,
+    image: 'https://res.cloudinary.com/dui84jwxv/image/upload/f_auto,q_auto/v1781973666/prod3948.jpg',
     tags: {
       RU: 'New',
       EN: 'New',
@@ -132,7 +122,7 @@ export const defaultProducts = [
     },
     category: 'strawberry',
     price: '1 900 ฿',
-    image: img4024,
+    image: 'https://res.cloudinary.com/dui84jwxv/image/upload/f_auto,q_auto/v1781973668/prod4024.jpg',
     tags: {
       RU: 'Бестселлер',
       EN: 'Bestseller',
@@ -144,11 +134,11 @@ export const defaultProducts = [
     names: {
       RU: 'Космический букет премиум',
       EN: 'Cosmic Premium Bouquet',
-      TH: 'ช่อดอกไม้คоสมิกพรีเมียม'
+      TH: 'ช่อดอกไม้คоสมิกพรีмеียม'
     },
     category: 'flowers',
     price: '3 500 ฿',
-    image: img4085,
+    image: 'https://res.cloudinary.com/dui84jwxv/image/upload/f_auto,q_auto/v1781973669/prod4085.jpg',
     tags: {
       RU: 'Deluxe',
       EN: 'Deluxe',
