@@ -111,10 +111,12 @@ const AdminDashboard = ({
     setUploadError('');
     if (!file) return;
 
+    /*
     if (file.size > 2 * 1024 * 1024) {
       setUploadError('Image is too large. Max size is 2MB.');
       return;
     }
+    */
 
     const reader = new FileReader();
     reader.onloadend = () => {
