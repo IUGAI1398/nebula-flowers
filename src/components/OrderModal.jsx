@@ -68,6 +68,21 @@ const OrderModal = ({ isOpen, onClose, selectedProduct, products = [], lang = 'E
       setIsSubmitting(false);
       const chosenProductLabel = productsList.find(p => p.value === formData.product)?.label || modalT.customOption;
       const successMessage = modalT.success.replace('{product}', chosenProductLabel.split(' (')[0]);
+
+      // WhatsApp Redirection
+      const phoneNumber = '66956680015';
+      let messageText = '';
+      if (modalT.title === 'Оформление заказа') {
+        messageText = `Здравствуйте! Я хочу оформить заказ:\n\n🌸 Товар: ${chosenProductLabel}\n👤 Имя: ${formData.name}\n📞 Телефон: ${formData.phone}\n📝 Пожелания: ${formData.notes || '-'}`;
+      } else if (modalT.title === 'รายละเอียดการสั่งซื้อ') {
+        messageText = `สวัสดีค่ะ/ครับ! ฉันต้องการสั่งซื้อสินค้า:\n\n🌸 สินค้า: ${chosenProductLabel}\n👤 ชื่อ: ${formData.name}\n📞 เบอร์โทรศัพท์: ${formData.phone}\n📝 รายละเอียดเพิ่มเติม: ${formData.notes || '-'}`;
+      } else {
+        messageText = `Hello! I would like to place an order:\n\n🌸 Product: ${chosenProductLabel}\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n📝 Notes: ${formData.notes || '-'}`;
+      }
+
+      const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+
       onSubmitSuccess(successMessage);
       setFormData({
         name: '',

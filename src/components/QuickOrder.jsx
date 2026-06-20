@@ -45,6 +45,21 @@ const QuickOrder = ({ onSubmitSuccess, t }) => {
     setTimeout(() => {
       setIsSubmitting(false);
       const successMessage = t.success.replace('{name}', formData.name);
+
+      // WhatsApp Redirection
+      const phoneNumber = '66956680015';
+      let messageText = '';
+      if (t.title === 'Быстрый заказ') {
+        messageText = `Здравствуйте! Я хочу сделать быстрый заказ:\n\n👤 Имя: ${formData.name}\n📞 Телефон: ${formData.phone}\n💬 Сообщение: ${formData.message || '-'}`;
+      } else if (t.title === 'สั่งซื้อด่วน') {
+        messageText = `สวัสดีค่ะ/ครับ! ฉันต้องการสั่งซื้อด่วน:\n\n👤 ชื่อ: ${formData.name}\n📞 เบอร์โทรศัพท์: ${formData.phone}\n💬 รายละเอียด: ${formData.message || '-'}`;
+      } else {
+        messageText = `Hello! I would like to place a quick order:\n\n👤 Name: ${formData.name}\n📞 Phone: ${formData.phone}\n💬 Message: ${formData.message || '-'}`;
+      }
+
+      const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(messageText)}`;
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
+
       onSubmitSuccess(successMessage);
       setFormData({
         name: '',
